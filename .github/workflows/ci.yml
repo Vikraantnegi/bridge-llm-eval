@@ -1,0 +1,44 @@
+# Sibling clone: canonical run_results lives in asumacodes/listener (different
+# GitHub owner than this repo). A submodule would drag a Next app into an eval
+# package; a pinned copy without git log cannot catch PIN STALE.
+#
+# Required secret on this repo: LISTENER_READ_TOKEN — a read-only PAT (or
+# fine-grained token) that can clone asumacodes/listener. GITHUB_TOKEN cannot
+# checkout a private repo in another account.
+#
+# fetch-depth: 0 is required. A shallow clone makes `git log -1 -- <file>`
+# return HEAD, not the last commit that touched the file, which falsely fails
+# PIN STALE whenever listener/main moves without editing run-results.ts.
+
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test
+
+      - uses: actions/checkout@v4
+        with:
+          repository: asumacodes/listener
+          path: listener
+          sparse-checkout: types/run-results.ts
+          fetch-depth: 0
+          token: ${{ secrets.LISTENER_READ_TOKEN }}
+
+      - run: npm run check:mirror
+        env:
+          LISTENER_REPO: ${{ github.workspace }}/listener

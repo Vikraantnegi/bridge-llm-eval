@@ -1,0 +1,17 @@
+{
+  "name": "bridge-llm-eval",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "KAN-83 operator quality judge — Phase 2 rubrics. HTTP /score lands in Phase 3.",
+  "scripts": {
+    "check:mirror": "node scripts/check-run-results-mirror.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "typescript": "^5",
+    "vitest": "^3"
+  }
+}

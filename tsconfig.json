@@ -6,7 +6,8 @@
     "strict": true,
     "noEmit": true,
     "skipLibCheck": true,
-    "rootDir": "."
+    "rootDir": ".",
+    "types": ["node"]
   },
-  "include": ["rubrics/**/*.ts", "types/**/*.ts"]
+  "include": ["rubrics/**/*.ts", "types/**/*.ts", "lib/**/*.ts", "src/**/*.ts"]
 }

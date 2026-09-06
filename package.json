@@ -3,14 +3,21 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "KAN-83 operator quality judge — Phase 2 rubrics. HTTP /score lands in Phase 3.",
+  "description": "KAN-83 operator quality judge — Phase 2 rubrics + Phase 3a /score gate.",
   "scripts": {
     "check:mirror": "node scripts/check-run-results-mirror.mjs",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run"
+    "test": "vitest run",
+    "dev": "tsx src/server.ts",
+    "start": "tsx src/server.ts"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2",
+    "fastify": "^5"
   },
   "devDependencies": {
     "@types/node": "^20",
+    "tsx": "^4",
     "typescript": "^5",
     "vitest": "^3"
   }

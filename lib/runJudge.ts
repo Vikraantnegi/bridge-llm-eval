@@ -8,7 +8,7 @@
 //  - If overHardStop -> do NOT call Anthropic; return judgeError (caller writes
 //    judge_error rows in 3d).
 //  - One POST to api.anthropic.com/v1/messages, model claude-sonnet-5,
-//    anthropic-version 2023-06-01, max_tokens 2048.
+//    anthropic-version 2023-06-01, max_tokens from config.MAX_TOKENS.
 //  - stop_reason "max_tokens" -> judge_error (NO salvage of clipped JSON).
 //  - Parse strict JSON: { prd|brand|jira|confluence|research: {qualitativeScore, flags[]} }.
 //    Absent artifacts (present:false) are NOT sent to the model and get a null

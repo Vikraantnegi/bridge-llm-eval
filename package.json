@@ -3,17 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "KAN-83 operator quality judge — Phase 2 rubrics + Phase 3a /score gate.",
+  "description": "KAN-83 operator quality judge — offline batch scorer.",
   "scripts": {
     "check:mirror": "node scripts/check-run-results-mirror.mjs",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "dev": "tsx src/server.ts",
-    "start": "tsx src/server.ts"
+    "score:batch": "tsx cli/scoreBatch.ts",
+    "score:batch:dev": "tsx cli/scoreBatch.ts --env dev --since 24",
+    "score:batch:prod": "tsx cli/scoreBatch.ts --env prod --since 24",
+    "calibrate:check": "tsx cli/calibrationCheck.ts"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2",
-    "fastify": "^5"
+    "dotenv": "^16"
   },
   "devDependencies": {
     "@types/node": "^20",

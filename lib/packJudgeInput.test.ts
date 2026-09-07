@@ -115,9 +115,9 @@ describe("packJudgeInput", () => {
     expect(packed.overHardStop).toBe(false);
   });
 
-  it("overHardStop when trimmed payload still exceeds PACKED_HARD_STOP", () => {
+  it("hard-caps an artifact that survives structured trim steps", () => {
     // Trim steps never delete must_have title/description — a huge description
-    // survives packing and trips the hard stop (no Anthropic call).
+    // used to blow past PACKED_HARD_STOP. Floor now enforces the per-artifact cap.
     const packed = packJudgeInput({
       transcript: null,
       prd: {
@@ -137,7 +137,12 @@ describe("packJudgeInput", () => {
     });
 
     expect(packed.artifacts.prd.wasTruncated).toBe(true);
-    expect(packed.totalChars).toBeGreaterThan(PACKED_HARD_STOP);
-    expect(packed.overHardStop).toBe(true);
+    expect(JSON.stringify(packed.artifacts.prd.value).length).toBeLessThanOrEqual(
+      PACK_CAPS.prd,
+    );
+    expect(
+      (packed.artifacts.prd.value as { _hardCapped?: boolean })._hardCapped,
+    ).toBe(true);
+    expect(packed.overHardStop).toBe(false);
   });
 });

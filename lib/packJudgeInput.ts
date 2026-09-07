@@ -84,7 +84,21 @@ function trimToCap(
     if (size(o) <= cap) break;
   }
   mark(o);
-  return { value: o, truncated: true };
+  if (size(o) <= cap) return { value: o, truncated: true };
+
+  // Floor: trim steps can leave fat blobs (e.g. competitors positioning prose)
+  // still over cap. Never exceed the per-artifact budget — hard-cap to a preview.
+  const raw = JSON.stringify(o);
+  let previewBudget = Math.max(0, cap - 80);
+  let value: Record<string, unknown> = mark(
+    { preview: raw.slice(0, previewBudget) },
+    { _hardCapped: true },
+  );
+  while (size(value) > cap && previewBudget > 0) {
+    previewBudget = Math.max(0, previewBudget - (size(value) - cap + 16));
+    value = mark({ preview: raw.slice(0, previewBudget) }, { _hardCapped: true });
+  }
+  return { value, truncated: true };
 }
 
 // --- PRD (amended trim order) ----------------------------------------------
@@ -117,11 +131,11 @@ function packBrand(brand: BrandResult): Trimmed {
 function packCompetitors(comp: CompetitorsResult): Trimmed {
   const originalCount = comp.competitors?.length ?? 0;
   const t = trimToCap(comp, PACK_CAPS.research, [
-    (o) => {                                                             // keep first 8 entries
+    (o) => {
       const c = o as CompetitorsResult;
       if (c.competitors && c.competitors.length > 8) c.competitors = c.competitors.slice(0, 8);
     },
-    (o) => {                                                             // trim per-entry arrays
+    (o) => {
       const c = o as CompetitorsResult;
       for (const e of c.competitors ?? []) {
         delete (e as Record<string, unknown>).keyFeatures;
@@ -129,8 +143,22 @@ function packCompetitors(comp: CompetitorsResult): Trimmed {
         delete (e as Record<string, unknown>).weaknesses;
       }
     },
+    (o) => {
+      // Fat positioning/url prose — keep name + short url only.
+      const c = o as CompetitorsResult;
+      if (c.competitors) {
+        c.competitors = c.competitors.map((e) => ({
+          name: e.name,
+          url: typeof e.url === "string" ? e.url.slice(0, 120) : e.url,
+        }));
+      }
+    },
+    (o) => {
+      const c = o as CompetitorsResult;
+      if (c.competitors && c.competitors.length > 4) c.competitors = c.competitors.slice(0, 4);
+    },
   ]);
-  if (t.truncated) {
+  if (t.truncated && t.value && typeof t.value === "object" && !("preview" in (t.value as object))) {
     const keptCount = (t.value as CompetitorsResult).competitors?.length ?? 0;
     if (keptCount < originalCount) {
       (t.value as Record<string, unknown>)._truncatedCompetitorCount = originalCount - keptCount;

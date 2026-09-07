@@ -4,17 +4,19 @@ KAN-83 operator quality judge. Observational, non-gating. Lives here so Listener
 
 **Phase 2:** five artifact rubrics, pinned `run_results` mirror, smoke tests, CI mirror check.
 
-**Phase 3a–3d (this repo today):** Fastify `POST /score` with HMAC + gates, deterministic runner + SSRF `checkUrl`, Sonnet judge + packer, five-row upsert + attempt transitions via `runRealScore`.
+**Phase 3 (batch):** offline CLI scores done runs — gate → deterministic → one Sonnet call → five rows + attempt transition. No Fastify, no HMAC, no n8n dispatch.
+
+**Phase 5:** operator views + `calibrate:check` variance probe + [docs/OPERATOR-GUIDE.md](docs/OPERATOR-GUIDE.md).
 
 ## Layout
 
 | Path | Role |
 |------|------|
 | `rubrics/` | Pure scoring functions |
-| `lib/` | HMAC, gate, config, Supabase attempts store |
-| `src/` | Fastify server + `/score` route + stub work |
+| `lib/` | Batch gate, persistence, judge, packer, calibration |
+| `cli/` | `scoreBatch` + `calibrationCheck` entry points |
 | `migrations/` | Versioned DDL (applied remotely via Supabase) |
-| `docs/` | ADR-044 addendum + n8n checklist |
+| `docs/` | ADR addendum, batch wiring, operator guide |
 | `types/run-results.mirror.ts` | Verbatim Listener mirror at `MIRROR_SHA` |
 
 ## Commands
@@ -24,12 +26,14 @@ npm install
 npm run typecheck
 npm test
 npm run check:mirror
-npm run dev   # POST /score on PORT (default 8787)
+npm run score:batch:dev    # last 24h on murmur-dev (needs .env)
+npm run score:batch:prod   # prod; refuses unless CALIBRATION_AUTHORIZED_PROD=true
+npm run calibrate:check -- --env dev --runs <id1,id2,id3>
 ```
 
-## Scorer env
+## Env
 
-See [docs/n8n-quality-judge-checklist.md](docs/n8n-quality-judge-checklist.md).
+See [docs/BATCH-WIRING.md](docs/BATCH-WIRING.md). Operator discipline: [docs/OPERATOR-GUIDE.md](docs/OPERATOR-GUIDE.md).
 
 ## CI and Listener
 

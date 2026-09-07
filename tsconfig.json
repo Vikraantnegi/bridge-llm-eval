@@ -9,5 +9,5 @@
     "rootDir": ".",
     "types": ["node"]
   },
-  "include": ["rubrics/**/*.ts", "types/**/*.ts", "lib/**/*.ts", "src/**/*.ts"]
+  "include": ["rubrics/**/*.ts", "types/**/*.ts", "lib/**/*.ts", "cli/**/*.ts"]
 }

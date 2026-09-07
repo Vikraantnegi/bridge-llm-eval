@@ -12,6 +12,9 @@ export const buildApp = () => {
   if (!config.supabaseUrl || !config.supabaseServiceRoleKey) {
     throw new Error("SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY are required");
   }
+  if (!config.anthropicApiKey) {
+    throw new Error("ANTHROPIC_API_KEY is missing");
+  }
 
   const client = createServiceClient(
     config.supabaseUrl,

@@ -1,16 +1,25 @@
 import type { FastifyInstance } from "fastify";
 import type { AttemptsStore } from "../../lib/attempts";
+import { makeCheckUrl } from "../../lib/checkUrl";
 import type { JudgeConfig } from "../../lib/config";
 import { RUBRIC_VERSION } from "../../lib/config";
 import { runGate } from "../../lib/gate";
 import { verifyScoreSignature } from "../../lib/hmac";
-import { runStubScore } from "../work/stub";
+import {
+  runRealScore,
+  type RunScoreArgs,
+  type RunScoreResult,
+} from "../../lib/runRealScore";
+
+export type ScoreWork = (args: RunScoreArgs) => Promise<RunScoreResult>;
 
 export type ScoreRouteDeps = {
   config: JudgeConfig;
   store: AttemptsStore;
   random?: () => number;
   now?: () => Date;
+  /** Defaults to runRealScore; inject in tests to avoid live I/O. */
+  scoreWork?: ScoreWork;
 };
 
 type ScoreBody = { run_id?: string };
@@ -37,7 +46,7 @@ export const registerScoreRoute = (
       return reply.code(401).send({ status: "unauthorized" });
     }
 
-    // 202-then-work: respond before gate / stub.
+    // 202-then-work: respond before gate / scoring.
     reply.code(202).send({ status: "accepted", run_id: runId });
 
     setImmediate(() => {
@@ -97,8 +106,32 @@ export const processScore = async (
     return;
   }
 
+  const scoreWork = deps.scoreWork ?? runRealScore;
   try {
-    await runStubScore(runId, deps.store);
+    const result = await scoreWork({
+      env: {
+        supabaseUrl: deps.config.supabaseUrl,
+        serviceRoleKey: deps.config.supabaseServiceRoleKey,
+      },
+      anthropicApiKey: deps.config.anthropicApiKey,
+      runId,
+      rubricVersion: RUBRIC_VERSION,
+      sampleReason: gate.sampleReason,
+      checkUrl: makeCheckUrl(),
+    });
+    console.log(
+      JSON.stringify({
+        event: "score_work_outcome",
+        run_id: runId,
+        outcome: result.outcome,
+        detail:
+          "detail" in result
+            ? result.detail
+            : "reason" in result
+              ? result.reason
+              : undefined,
+      }),
+    );
   } catch (err) {
     await deps.store.updateStatus({
       runId,

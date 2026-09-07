@@ -4,7 +4,7 @@ KAN-83 operator quality judge. Observational, non-gating. Lives here so Listener
 
 **Phase 2:** five artifact rubrics, pinned `run_results` mirror, smoke tests, CI mirror check.
 
-**Phase 3a (this repo today):** Fastify `POST /score` with HMAC + gates + `run_quality_attempts` bookkeeping. Deterministic rubrics / Sonnet / five-row upsert land in 3b–3d.
+**Phase 3a–3d (this repo today):** Fastify `POST /score` with HMAC + gates, deterministic runner + SSRF `checkUrl`, Sonnet judge + packer, five-row upsert + attempt transitions via `runRealScore`.
 
 ## Layout
 

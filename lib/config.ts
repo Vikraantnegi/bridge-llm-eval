@@ -19,6 +19,7 @@ export type JudgeConfig = {
   hmacSecret: string;
   supabaseUrl: string;
   supabaseServiceRoleKey: string;
+  anthropicApiKey: string;
   port: number;
 };
 
@@ -42,6 +43,7 @@ export const loadConfig = (env: NodeJS.ProcessEnv = process.env): JudgeConfig =>
     hmacSecret: env.MURMUR_HMAC_SECRET ?? "",
     supabaseUrl: env.SUPABASE_URL ?? env.NEXT_PUBLIC_SUPABASE_URL ?? "",
     supabaseServiceRoleKey: env.SUPABASE_SERVICE_ROLE_KEY ?? "",
+    anthropicApiKey: env.ANTHROPIC_API_KEY ?? "",
     port: parseNumber(env.PORT) ?? 8787,
   };
 };

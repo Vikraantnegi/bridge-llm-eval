@@ -16,6 +16,7 @@ const config = (over: Partial<JudgeConfig> = {}): JudgeConfig => ({
   hmacSecret: SECRET,
   supabaseUrl: "http://example.invalid",
   supabaseServiceRoleKey: "service",
+  anthropicApiKey: "anthropic-test-key",
   port: 8787,
   ...over,
 });
@@ -83,13 +84,21 @@ describe("POST /score", () => {
     expect(store.rows.size).toBe(0);
   });
 
-  it("returns 202 then proceeds to stub scored attempt", async () => {
+  it("returns 202 then runs scoreWork on proceed", async () => {
     const store = memoryStore();
     const app = Fastify();
     registerScoreRoute(app, {
       config: config(),
       store,
       random: () => 0,
+      scoreWork: async ({ runId, rubricVersion }) => {
+        await store.updateStatus({
+          runId,
+          rubricVersion,
+          status: "scored",
+        });
+        return { outcome: "scored" };
+      },
     });
     apps.push(app);
     const { signatureHeader, timestamp } = signScoreRequest(RUN, SECRET);
@@ -104,7 +113,6 @@ describe("POST /score", () => {
     });
     expect(res.statusCode).toBe(202);
 
-    // Drain the setImmediate work.
     await new Promise((r) => setTimeout(r, 20));
     const row = store.rows.get(`${RUN}:v1`);
     expect(row?.status).toBe("scored");
@@ -118,6 +126,9 @@ describe("processScore skips", () => {
     await processScore(RUN, {
       config: config({ calibrationAuthorized: false }),
       store,
+      scoreWork: async () => {
+        throw new Error("scoreWork must not run");
+      },
     });
     expect(store.rows.size).toBe(0);
   });

@@ -1,0 +1,90 @@
+[
+    {
+      "run_id": "6a9b6c3d-4414-44a9-b728-00e5503ab53d",
+      "anthropic_usd": "0.44562600000000002",
+      "anthropic_input_tokens": 29843,
+      "anthropic_output_tokens": 38594,
+      "updated_at": "2026-09-23 22:02:22.986162+00",
+      "exa_usd": "0.007",
+      "judge_usd": "0",
+      "judge_input_tokens": 0,
+      "judge_output_tokens": 0
+    },
+    {
+      "run_id": "e8b5cc55-21f4-4832-9479-54e831a4270a",
+      "anthropic_usd": "0.39496600000000001",
+      "anthropic_input_tokens": 27573,
+      "anthropic_output_tokens": 33982,
+      "updated_at": "2026-08-19 17:04:12.98145+00",
+      "exa_usd": "0.007",
+      "judge_usd": "0",
+      "judge_input_tokens": 0,
+      "judge_output_tokens": 0
+    },
+    {
+      "run_id": "181ae01e-bbd6-404b-8b7b-e0dd80a5b043",
+      "anthropic_usd": "0.47945799999999998",
+      "anthropic_input_tokens": 27039,
+      "anthropic_output_tokens": 42538,
+      "updated_at": "2026-08-19 17:17:49.847178+00",
+      "exa_usd": "0.007",
+      "judge_usd": "0",
+      "judge_input_tokens": 0,
+      "judge_output_tokens": 0
+    },
+    {
+      "run_id": "3c008c8e-a42d-40a1-bfcf-874f3de8dcf2",
+      "anthropic_usd": "0.39342399999999998",
+      "anthropic_input_tokens": 26462,
+      "anthropic_output_tokens": 34050,
+      "updated_at": "2026-08-21 18:02:12.349133+00",
+      "exa_usd": "0.007",
+      "judge_usd": "0",
+      "judge_input_tokens": 0,
+      "judge_output_tokens": 0
+    },
+    {
+      "run_id": "958d839b-e7e4-466c-866b-89f944dd3ff6",
+      "anthropic_usd": "0.345931999999999986",
+      "anthropic_input_tokens": 24946,
+      "anthropic_output_tokens": 29604,
+      "updated_at": "2026-09-07 09:53:57.422836+00",
+      "exa_usd": "0.007",
+      "judge_usd": "0.037152",
+      "judge_input_tokens": 11831,
+      "judge_output_tokens": 1349
+    },
+    {
+      "run_id": "cf3242f9-7092-4222-a7b1-2d52511e1a00",
+      "anthropic_usd": "0.483326",
+      "anthropic_input_tokens": 31693,
+      "anthropic_output_tokens": 41994,
+      "updated_at": "2026-09-07 09:54:21.478549+00",
+      "exa_usd": "0.007",
+      "judge_usd": "0.04493",
+      "judge_input_tokens": 13820,
+      "judge_output_tokens": 1729
+    },
+    {
+      "run_id": "81e01ca7-c7f3-4621-b736-902803162887",
+      "anthropic_usd": "0.390090000000000021",
+      "anthropic_input_tokens": 25775,
+      "anthropic_output_tokens": 33854,
+      "updated_at": "2026-09-07 10:00:17.199555+00",
+      "exa_usd": "0.007",
+      "judge_usd": "0.087842",
+      "judge_input_tokens": 23326,
+      "judge_output_tokens": 4119
+    },
+    {
+      "run_id": "e52c365a-4d7f-4fc7-853e-2303f718179e",
+      "anthropic_usd": "0.393181999999999993",
+      "anthropic_input_tokens": 24771,
+      "anthropic_output_tokens": 34364,
+      "updated_at": "2026-09-23 16:24:56.982735+00",
+      "exa_usd": "0.007",
+      "judge_usd": "0",
+      "judge_input_tokens": 0,
+      "judge_output_tokens": 0
+    }
+  ]

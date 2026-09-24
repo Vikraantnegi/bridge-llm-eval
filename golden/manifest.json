@@ -1,0 +1,244 @@
+{
+  "name": "murmur-golden-set",
+  "snapshot_date": "2026-09-24",
+  "source_env": "prod (jighdyaffeiimyqhlzuv)",
+  "engineering_prompt": "all snapshot runs predate the Engineering rewrite published 2026-09-24 (baseline A = old prompt)",
+  "note": "Manifest only. The full run_results payloads live in the snapshot export (store it as golden/snapshot-2026-09-24.json in bridge-llm-eval).",
+  "snapshot_runs": [
+    {
+      "product": "Shotgun",
+      "run_id": "181ae01e-bbd6-404b-8b7b-e0dd80a5b043",
+      "recording_id": "f59dfebf-ad69-4a62-b22a-af09aca7cf4f",
+      "user_id": "23b1569f-f63c-4048-a00c-9c2c41e27f09",
+      "created_at": "2026-08-19",
+      "idea_group": "road-trip-queue",
+      "prd_shape": "full",
+      "jira": {
+        "epics": 9,
+        "stories": 40
+      },
+      "run_costs": {
+        "anthropic_usd": 0.479458,
+        "input_tokens": 27039,
+        "output_tokens": 42538,
+        "exa_usd": 0.007,
+        "judge_usd": 0.0
+      }
+    },
+    {
+      "product": "Waypoint",
+      "run_id": "e8b5cc55-21f4-4832-9479-54e831a4270a",
+      "recording_id": "4613bbba-8fb8-4182-bb48-c46a1c372b85",
+      "user_id": "fb851b57-9313-42e8-bd29-9fb49b4333e7",
+      "created_at": "2026-08-19",
+      "idea_group": "road-trip-queue",
+      "prd_shape": "full",
+      "jira": {
+        "epics": 12,
+        "stories": 50
+      },
+      "run_costs": {
+        "anthropic_usd": 0.394966,
+        "input_tokens": 27573,
+        "output_tokens": 33982,
+        "exa_usd": 0.007,
+        "judge_usd": 0.0
+      }
+    },
+    {
+      "product": "Convoy",
+      "run_id": "3c008c8e-a42d-40a1-bfcf-874f3de8dcf2",
+      "recording_id": "0cfcfec1-6034-409c-baed-5d25537d4104",
+      "user_id": "23b1569f-f63c-4048-a00c-9c2c41e27f09",
+      "created_at": "2026-08-21",
+      "idea_group": "road-trip-queue",
+      "prd_shape": "rationale_only",
+      "jira": {
+        "epics": 10,
+        "stories": 36
+      },
+      "run_costs": {
+        "anthropic_usd": 0.393424,
+        "input_tokens": 26462,
+        "output_tokens": 34050,
+        "exa_usd": 0.007,
+        "judge_usd": 0.0
+      }
+    },
+    {
+      "product": "VibeGraph",
+      "run_id": "958d839b-e7e4-466c-866b-89f944dd3ff6",
+      "recording_id": "7ce2c141-8331-45db-b2c6-5f6c34357ab9",
+      "user_id": "fb851b57-9313-42e8-bd29-9fb49b4333e7",
+      "created_at": "2026-09-04",
+      "idea_group": "vibegraph",
+      "prd_shape": "rationale_only",
+      "jira": {
+        "epics": 9,
+        "stories": 39
+      },
+      "run_costs": {
+        "anthropic_usd": 0.345932,
+        "input_tokens": 24946,
+        "output_tokens": 29604,
+        "exa_usd": 0.007,
+        "judge_usd": 0.037152
+      }
+    },
+    {
+      "product": "Fin Matter",
+      "run_id": "cf3242f9-7092-4222-a7b1-2d52511e1a00",
+      "recording_id": "9a378229-5904-4df0-b1a2-e0f0c33af0c6",
+      "user_id": "fb851b57-9313-42e8-bd29-9fb49b4333e7",
+      "created_at": "2026-09-04",
+      "idea_group": "fin-matter",
+      "prd_shape": "full",
+      "jira": {
+        "epics": 11,
+        "stories": 41
+      },
+      "run_costs": {
+        "anthropic_usd": 0.483326,
+        "input_tokens": 31693,
+        "output_tokens": 41994,
+        "exa_usd": 0.007,
+        "judge_usd": 0.04493
+      }
+    },
+    {
+      "product": "Poké Clash",
+      "run_id": "81e01ca7-c7f3-4621-b736-902803162887",
+      "recording_id": "f8ec26fd-d3de-439f-91ea-75d2bd2f4a4b",
+      "user_id": "fb851b57-9313-42e8-bd29-9fb49b4333e7",
+      "created_at": "2026-09-04",
+      "idea_group": "poke-clash",
+      "prd_shape": "bare",
+      "jira": {
+        "epics": 10,
+        "stories": 41
+      },
+      "run_costs": {
+        "anthropic_usd": 0.39009,
+        "input_tokens": 25775,
+        "output_tokens": 33854,
+        "exa_usd": 0.007,
+        "judge_usd": 0.087842
+      }
+    },
+    {
+      "product": "ShipReel",
+      "run_id": "e52c365a-4d7f-4fc7-853e-2303f718179e",
+      "recording_id": "ce733836-fc65-403c-9551-3a0335400fb2",
+      "user_id": "fb851b57-9313-42e8-bd29-9fb49b4333e7",
+      "created_at": "2026-09-23",
+      "idea_group": "shipreel",
+      "prd_shape": "bare",
+      "jira": {
+        "epics": 11,
+        "stories": 33
+      },
+      "run_costs": {
+        "anthropic_usd": 0.393182,
+        "input_tokens": 24771,
+        "output_tokens": 34364,
+        "exa_usd": 0.007,
+        "judge_usd": 0.0
+      }
+    },
+    {
+      "product": "Aavaas",
+      "run_id": "6a9b6c3d-4414-44a9-b728-00e5503ab53d",
+      "recording_id": "77f74cac-f3b1-491c-98b3-6833929c2dca",
+      "user_id": "fb851b57-9313-42e8-bd29-9fb49b4333e7",
+      "created_at": "2026-09-23",
+      "idea_group": "aavaas",
+      "prd_shape": "full",
+      "jira": {
+        "epics": 11,
+        "stories": 39
+      },
+      "run_costs": {
+        "anthropic_usd": 0.445626,
+        "input_tokens": 29843,
+        "output_tokens": 38594,
+        "exa_usd": 0.007,
+        "judge_usd": 0.0
+      }
+    }
+  ],
+  "prd_shape_legend": {
+    "full": "risks + nonGoals + competitiveLandscape + feature rationale (system-prompt schema)",
+    "rationale_only": "feature rationale, but no risks / nonGoals / competitiveLandscape",
+    "bare": "title + description per feature only (user-prompt schema)"
+  },
+  "transcript_only_candidates": [
+    {
+      "product": "Roundframe",
+      "recording_id": "8e6c32a3-4c69-4547-a34c-b4d98a311616",
+      "chars": 910,
+      "created_at": "2026-07-12"
+    },
+    {
+      "product": "ForgeOS",
+      "recording_id": "1fc47cb7-75b8-48d7-a393-e765804336f0",
+      "chars": 1825,
+      "created_at": "2026-07-13"
+    },
+    {
+      "product": "Blockwatch",
+      "recording_id": "a2008c48-3b94-4ed1-9081-fa7adf40fa1f",
+      "chars": 613,
+      "created_at": "2026-07-17"
+    },
+    {
+      "product": "TapIn Studio",
+      "recording_id": "e04d8bad-f680-4765-80d2-0f8b0c6b8f03",
+      "chars": 1164,
+      "created_at": "2026-07-21"
+    },
+    {
+      "product": "Housetab",
+      "recording_id": "d26c35a6-ea19-44ca-b53a-c03ba4b06345",
+      "chars": 1256,
+      "created_at": "2026-07-23"
+    },
+    {
+      "product": "TrustyWalks",
+      "recording_id": "ad77e8ef-423f-4e4e-b275-acee3b7b2756",
+      "chars": 675,
+      "created_at": "2026-07-23"
+    },
+    {
+      "product": "ThreadBrief",
+      "recording_id": "8da0ae1e-f1cb-42fb-83f5-282e10eab579",
+      "chars": 997,
+      "created_at": "2026-07-23"
+    },
+    {
+      "product": "GSTCockpit",
+      "recording_id": "70cee46e-fb08-4913-a3d5-0698d6dbd02e",
+      "chars": 818,
+      "created_at": "2026-07-23"
+    },
+    {
+      "product": "ChainGuard",
+      "recording_id": "992060e9-634a-4a79-83f6-55d0c8b28d0b",
+      "chars": 1049,
+      "created_at": "2026-07-23"
+    },
+    {
+      "product": "FaultLine",
+      "recording_id": "a6136180-8e08-45b8-967c-269ec05dc0f6",
+      "chars": 837,
+      "created_at": "2026-07-23"
+    },
+    {
+      "product": "Motionforge",
+      "recording_id": "3b81224c-4f7a-4fd1-8771-827ec6361878",
+      "chars": 796,
+      "created_at": "2026-07-24"
+    }
+  ],
+  "transcript_only_user_id": "bfa88e70-0a53-46e8-93c1-8b7def1ae8a2",
+  "run_costs_note": "From prod run_costs, queried 2026-09-24. anthropic_usd uses the LLM Call workflow's hardcoded $2/M in, $10/M out."
+}
